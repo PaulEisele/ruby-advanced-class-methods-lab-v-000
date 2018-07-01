@@ -49,6 +49,13 @@ class Song
     self.find_by_name(name) || self.create_by_name(name)
   end
 
+  def create_from_filename
+    song = self.new
+    song.filename = filename
+    self.all << song
+    song
+  end
+
   def self.destroy_all
     @@all.clear
   end
