@@ -51,9 +51,9 @@ class Song
 
   def create_from_filename
     song = self.new
-    song.filename = filename
-    self.all << song
-    song
+    song.name = file_name.split(" - ")[1].split(".")[0]
+    song.artist_name = file_name.split(" - ")[0]
+    @@all << song
   end
 
   def self.destroy_all
