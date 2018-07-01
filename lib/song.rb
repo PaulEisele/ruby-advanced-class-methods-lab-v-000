@@ -10,17 +10,30 @@ class Song
     self.class.all << self
   end
 
-  def SONG.CREATE
-    song = Song.create
-    Song.all.include?
+  def self.create_by_name(name)
+    song = self.new
+    song.name = name
+    self.all << song
+    song
   end
 
-  def SONG.NEW_BY_NAME    
-    
+  def self.alphabetical
+    self.all.sort_by! {|song| song.name }
   end
 
-  def SONG.NEW_FROM_FILENAME
 
+  def self.new_by_name(name)
+    song = self.new
+    song.name = name
+    song
+  end
+
+  def SONG.NEW_FROM_FILENAME(filename)
+    a = filename.split(" - ")
+    song = self.new
+    song.artist_name = a[0]
+    song.name = a[1].split(".")[0]
+    song
   end
 
   def SONG.CREATE_FROM_FILENAME
@@ -28,6 +41,6 @@ class Song
   end
 
   def SONG.DESTROY_ALL
-    song.clear
-  end 
+    @@all.clear
+  end
 end
