@@ -37,7 +37,7 @@ class Song
     song
   end
 
-  def SONG.NEW_FROM_FILENAME(filename)
+  def self.new_from_filename(filename)
     a = filename.split(" - ")
     song = self.new
     song.artist_name = a[0]
@@ -45,11 +45,11 @@ class Song
     song
   end
 
-  def self.find_or_create_by_name
+  def self.find_or_create_by_name(name)
     self.find_by_name(name) || self.create_by_name(name)
   end
 
-  def SONG.DESTROY_ALL
+  def self.destroy_all
     @@all.clear
   end
 end
